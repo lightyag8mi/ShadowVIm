@@ -16,27 +16,6 @@ ShadowVim is not “just another Neovim distro” — it’s built to be:
 
 ---
 
-## 🚀 Quick Install
-
-### **Windows**
-```powershell
-git clone https://github.com/lightyag8mi/shadowvim.git $env:LOCALAPPDATA\nvim
-```
-
-### **Linux & macOS**
-
-```bash
-git clone https://github.com/lightyag8mi/shadowvim.git ~/.config/nvim
-```
-
-Open Neovim:
-
-```bash
-nvim
-```
-
----
-
 ## 🖥 Features at a Glance
 
 | Category            | Feature                                                 |
@@ -86,10 +65,45 @@ ShadowVim wouldn’t exist without:
 
 <img width="1600" height="900" alt="Screenshot 2025-08-10 195110" src="https://github.com/user-attachments/assets/115dab08-01d2-4db5-8c65-2f707a88f488" />
 
-
 ### **Plugin List**
 
 <img width="1600" height="900" alt="Screenshot 2025-08-10 195137" src="https://github.com/user-attachments/assets/3aee79f7-53c7-40b3-a01f-33bf9f91e5be" />
 
 
-### Start using today!
+## Start using today!
+
+## 📦 Dependencies
+
+Before installing ShadowVim, make sure you have the following installed:
+
+### **Required**
+- **[Neovim 0.9+](https://neovim.io/)** – ShadowVim is built for the latest Neovim releases.  
+- **[Git](https://git-scm.com/)** – Needed for plugin management.  
+- **[Node.js](https://nodejs.org/en/)** – Required for language servers, GitHub Copilot, and other JS-based plugins.  
+- **[Nerd Font](https://www.nerdfonts.com/font-downloads)** – For proper icons and UI rendering (recommend *FiraCode Nerd Font* or *JetBrainsMono Nerd Font*).  
+
+### **Optional (but recommended)**
+
+- **[Python 3](https://www.python.org/)** – Required if you want Python-based plugins/LSPs.  
+- **[C Compiler (GCC/Clang/MinGW)]** – Required for compiling certain language servers (like Treesitter).
+
+
+---
+## 🚀 Quick Install
+
+### **Windows**
+```powershell
+git clone https://github.com/lightyag8mi/shadowvim.git $env:LOCALAPPDATA\nvim
+```
+
+### **Linux & macOS**
+
+```bash
+git clone https://github.com/lightyag8mi/shadowvim.git ~/.config/nvim
+```
+
+Open Neovim:
+
+```bash
+nvim
+```
