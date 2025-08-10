@@ -11,7 +11,7 @@
 ## ⚡ Why ShadowVim?
 ShadowVim is not “just another Neovim distro” — it’s built to be:
 - **Minimal** → Lightweight core (~23 plugins total)
-- **Fast** → Startup in **30–50ms** with full UI animations
+- **Fast** → Startup in **30–80ms** with full UI animations
 - **Feature-Rich** → LSP, AI (Copilot), Git tools, file explorer, dashboard, terminal, Zen mode, and more
 
 ---
@@ -41,7 +41,7 @@ nvim
 
 | Category            | Feature                                                 |
 | ------------------- | ------------------------------------------------------- |
-| **Speed**           | 30–50ms startup (full plugins + animations)             |
+| **Speed**           | 30–80ms startup (full plugins + animations)             |
 | **UI**              | Catppuccin theme, animated statusline, smooth dashboard |
 | **AI**              | GitHub Copilot pre-integrated                           |
 | **Code**            | LSP, Autocomplete, Snippets                             |
@@ -63,15 +63,6 @@ ShadowVim wouldn’t exist without:
 * [**Copilot.vim**](https://github.com/github/copilot.vim) — AI assistance
 * And more in the [`plugins/`](./lua/plugins/) folder.
 
----
-
-## 🛡 Customization Rules
-
-To keep ShadowVim blazing fast:
-
-* Put **all personal plugins, keymaps, themes** inside `shadowlily.lua`
-* Do **not** modify the main config files — performance is tuned at the core level
-* Breaking changes in the core config **are not supported** if modified
 
 ---
 
