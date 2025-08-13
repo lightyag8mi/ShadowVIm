@@ -1,4 +1,5 @@
 return {
+-- Theme
    {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -127,4 +128,5 @@ return {
     end,
 },
 }
+
 
