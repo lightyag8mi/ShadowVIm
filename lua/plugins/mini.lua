@@ -19,6 +19,7 @@ return {
     end,
   },
   
+  -- Mini.surround + Mini.notify
   {
     'echasnovski/mini.nvim',
     keys = {
@@ -34,4 +35,25 @@ return {
       })
     end,
   },
+
+  -- Mini.files: file explorer
+  {
+  'echasnovski/mini.nvim',
+  lazy = false,
+  keys = {
+    { '-', function() MiniFiles.open() end, desc = 'Open Mini Files (cwd)' },
+    { '<leader>e', function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, desc = 'Open Mini Files (current file dir)' },
+  },
+  config = function()
+    require('mini.files').setup({
+      windows = {
+        preview = true,
+        width_focus = 30,
+        width_nofocus = 20,
+        height_focus = 20,
+        height_nofocus = 10,
+      },
+    })
+  end,
+ },
 }
