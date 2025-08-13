@@ -2,7 +2,9 @@
 
 > **Craft your own digital realm** — Minimal and blazing fast, feature-rich, and integrated AI right out of the box.
 
-<img width="1600" height="900" alt="Screenshot 2025-08-10 194931" src="https://github.com/user-attachments/assets/0f3ff80d-7827-44a8-9642-06908b2e4e5e" />
+<img width="1600" height="900" alt="Screenshot 2025-08-13 151321" src="https://github.com/user-attachments/assets/027cb1ea-bfc4-44fe-9296-e61f4c5c6668" />
+
+
 
 ---
 
@@ -10,11 +12,11 @@
 
 ShadowVim isn't just another Neovim distro — it's built for developers who want maximum productivity without the bloat:
 
-- **🚀 Blazing Fast** → 30–80ms startup with full UI animations
-- **🎯 Minimal Core** → Only ~24 carefully curated plugins, no redundancy
-- **🤖 AI-First** → GitHub Copilot pre-configured and ready to use
-- **📦 Complete** → Everything you need for modern development: LSP, Git, debugging, terminal
-- **🎨 Beautiful** → Catppuccin theme with smooth animations and polished UI
+- **Blazing Fast** → 30–80ms startup with full UI animations
+- **Minimal Core** → Only ~24 carefully curated plugins, no redundancy
+- **AI-First** → Codeium AI pre-configured and ready to use
+- **Complete** → Everything you need for modern development: LSP, Git, debugging, terminal
+- **Beautiful** → Catppuccin theme with smooth animations and polished UI
 
 **Perfect for**: Developers switching from VSCode, those tired of slow Neovim configs, or anyone wanting a modern editing experience without the setup hassle.
 
@@ -25,10 +27,10 @@ ShadowVim isn't just another Neovim distro — it's built for developers who wan
 | Category            | Feature                                                 |
 | ------------------- | ------------------------------------------------------- |
 | **Performance**     | 30–80ms startup • Lazy loading • Optimized plugins     |
-| **AI Assistance**   | GitHub Copilot • Smart completions • Code suggestions  |
+| **AI Assistance**   | Codeium AI • Smart completions • Code suggestions      |
 | **Language Support** | Mason auto-install LSPs • Treesitter syntax • Diagnostics |
 | **UI/UX**           | Catppuccin Mocha • Lualine statusline • Bufferline tabs |
-| **Navigation**      | Telescope fuzzy finder • Snacks explorer • Which-key   |
+| **Navigation**      | Telescope fuzzy finder • Mini.files explorer • Which-key |
 | **Terminal**        | Snacks floating terminal • Integrated experience       |
 | **Productivity**    | Auto-completion • Snippets • Mini.nvim utilities       |
 | **Code Quality**    | Conform.nvim formatting • LSP diagnostics • Auto-pairs |
@@ -77,7 +79,7 @@ On first startup, ShadowVim will:
 ### **Required**
 - **[Neovim 0.9+](https://neovim.io/)** – Latest stable version recommended
 - **[Git](https://git-scm.com/)** – For plugin management and version control
-- **[Node.js 16+](https://nodejs.org/en/)** – Required for LSPs and GitHub Copilot
+- **[Node.js 16+](https://nodejs.org/en/)** – Required for LSPs and Codeium
 - **[Nerd Font](https://www.nerdfonts.com/font-downloads)** – For icons (*JetBrainsMono Nerd Font* recommended)
 
 ### **Optional (but recommended)**
@@ -96,6 +98,7 @@ ShadowVim uses `<Space>` as the leader key. Here are the essential bindings:
 ### **Core Navigation**
 | Key | Action |
 |-----|--------|
+| `<Space>d` | Open Dashboard |
 | `<Space>` | Show which-key menu |
 | `<Space>ff` | Find files (Telescope) |
 | `<Space>fg` | Live grep (Telescope) |
@@ -105,9 +108,18 @@ ShadowVim uses `<Space>` as the leader key. Here are the essential bindings:
 ### **File Management**
 | Key | Action |
 |-----|--------|
-| `<Space>e` | Toggle Snacks file explorer |
+| `<Space>e` | Open Mini.files explorer |
 | `<Space>q` | Close current buffer |
-| `<Tab>n` | Next buffer |
+| `<Space>Q` | Force close current buffer |
+| `<Ctrl>p` | Previous buffer |
+| `<Ctrl>n` | Next buffer |
+
+### **Window Management**
+| Key | Action |
+|-----|--------|
+| `<Ctrl>h/j/k/l` | Navigate between windows |
+| `<Ctrl>Up/Down` | Resize window vertically |
+| `<Ctrl>Left/Right` | Resize window horizontally |
 
 ### **Code & LSP**
 | Key | Action |
@@ -127,18 +139,29 @@ ShadowVim uses `<Space>` as the leader key. Here are the essential bindings:
 |-----|--------|
 | `<Space>z` | Toggle Zen mode (Snacks) |
 | `<Space>d` | Open Dashboard (Snacks) |
-| `<Space>\`` | Open floating terminal (Snacks) |
+| `<Space>t` | Open floating terminal (Snacks) |
 | `gc` | Comment/uncomment (Mini.comment) |
 | `;` | Enter command mode |
 
-### **GitHub Copilot**
+### **Codeium AI**
 | Key | Action |
 |-----|--------|
-| `<Tab>a` (Insert) | Accept line |
-| `<Tab>r` (Insert) | Reject suggestion |
+| `<Ctrl>a` (Insert) | Accept suggestion |
+| `<Ctrl>;` (Insert) | Next suggestion |
+| `<Ctrl>,` (Insert) | Previous suggestion |
+| `<Ctrl>x` (Insert) | Clear suggestion |
 
+### **Insert Mode Navigation**
+| Key | Action |
+|-----|--------|
+| `<Ctrl>b` | Move to beginning of line |
+| `<Ctrl>e` | Move to end of line |
+| `<Ctrl>l` | Move left |
+| `<Ctrl>r` | Move right |
+| `<Ctrl>d` | Move down |
+| `<Ctrl>u` | Move up |
 
-*💡 Tip: Press `<Space>` or open mappings from dashboard and wait to see all available keybindings with which-key!*
+*💡 Tip: Press `<Space>` or mappings in dashbaord and wait to see all available keybindings with which-key!*
 
 ---
 
@@ -148,12 +171,8 @@ ShadowVim uses Mason to auto-install language servers:
 
 ### **Pre-configured LSPs**
 - **lua_ls** → Lua
-- **tsserver** → TypeScript/JavaScript  
 - **pyright** → Python
-- **cssls** → CSS
-- **html** → HTML
-- **bashls** → Bash
-- **jsonls** → JSON
+- **tsserver** → TypeScript/JavaScript  
 
 ### **Syntax Highlighting (Treesitter)**
 Supports: lua, vim, python, javascript, typescript, html, css, go
@@ -170,12 +189,9 @@ Use Mason to install additional LSPs:
 :Mason
 ```
 
-Or add to `lua/plugins/lsp/mason.lua`:
+Or add to `lua/plugins/mason.lua`:
 ```lua
-ensure_installed = {
-  'lua_ls',
-  'your_new_lsp', -- Add here
-}
+ensure_installed = { "lua_ls", "pyright", "tsserver", "your_new_lsp" },
 ```
 
 ---
@@ -184,11 +200,11 @@ ensure_installed = {
 
 ### **Changing Theme**
 
-ShadowVim uses Catppuccin Mocha by default. Edit `lua/plugins/theme.lua`:
+ShadowVim uses Catppuccin Mocha by default. Edit `lua/plugins/ui.lua`:
 
 ```lua
-require('catppuccin').setup({
-  flavour = 'latte', -- latte, frappe, macchiato, mocha
+require("catppuccin").setup({
+  flavour = "latte", -- mocha, macchiato, frappe, latte
 })
 ```
 
@@ -221,21 +237,20 @@ keymap.set('n', '<leader>x', ':YourCommand<CR>', { desc = 'Your Description' })
 
 ### **LSP Configuration**
 
-Modify `lua/plugins/lsp/init.lua` for custom LSP settings or add server-specific configs in the Mason setup handlers.
+Modify `lua/plugins/mason.lua` for custom LSP settings or add server-specific configs in the Mason setup handlers.
 
 ---
 
 ## 🗂 Plugin Architecture
 
-ShadowVim wouldn't exist without these core plugins:
+ShadowVim's lean plugin selection focuses on performance and functionality:
 
 **Core Framework**
 * [**Lazy.nvim**](https://github.com/folke/lazy.nvim) — Plugin manager with lazy loading
-* [**Snacks.nvim**](https://github.com/folke/snacks.nvim) — Dashboard, explorer, terminal, zen mode
-* [**Mini.nvim**](https://github.com/echasnovski/mini.nvim) — Pairs, commenting, surround, notifications
+* [**Snacks.nvim**](https://github.com/folke/snacks.nvim) — Dashboard, terminal, zen mode, statuscolumn
+* [**Mini.nvim**](https://github.com/echasnovski/mini.nvim) — Files, pairs, commenting, surround, notifications
   
 **UI & Navigation**  
-
 * [**Telescope**](https://github.com/nvim-telescope/telescope.nvim) — Fuzzy finder
 * [**Catppuccin**](https://github.com/catppuccin/nvim) — Theme
 * [**Lualine**](https://github.com/nvim-lualine/lualine.nvim) — Statusline
@@ -250,8 +265,9 @@ ShadowVim wouldn't exist without these core plugins:
 * [**Conform.nvim**](https://github.com/stevearc/conform.nvim) — Code formatting
 
 **AI & Productivity**
-* [**Copilot.vim**](https://github.com/github/copilot.vim) — AI assistance
+* [**Codeium.vim**](https://github.com/Exafunction/codeium.vim) — AI assistance
 * [**LuaSnip**](https://github.com/L3MON4D3/LuaSnip) — Snippet engine
+* [**Noice.nvim**](https://github.com/folke/noice.nvim) — Command line improvements
 
 ---
 
@@ -259,10 +275,24 @@ ShadowVim wouldn't exist without these core plugins:
 
 ### **Common Issues**
 
-**Copilot not working?**
-- Run `:Copilot setup` and authenticate with GitHub
+**Codeium not working?**
+- Run `:Codeium Auth` and authenticate with GitHub/Google
 - Ensure Node.js 16+ is installed
-- Check `:Copilot status`
+- Check `:Codeium Chat` for status
+
+**Mini.files explorer not familiar?**
+
+- Press `<Space>e` or `-` to open the file explorer
+- Use `h/j/k/l` or arrow keys to navigate
+- Press `Enter` to open files/folders
+- Press `l` or `→` to expand directories
+- Press `h` or `←` to collapse directories
+- Press `g.` to toggle hidden files
+- Press `g~` to go to home directory
+- Press `gh` to go to parent directory
+- Use `yy` to copy file path
+- Press `q` to close the explorer
+- **Pro tip**: You can create, delete, rename files directly in the explorer - just edit the buffer and save by hitting "="!
 
 **LSP not starting?**
 - Run `:Mason` to check installed servers
@@ -275,7 +305,7 @@ ShadowVim wouldn't exist without these core plugins:
 
 **Slow startup?**
 - Check `:Lazy profile` for plugin load times
-- Some plugins load on specific events to optimize startup
+- ShadowVim loads only essential plugins on startup for <40ms performance
 
 **Formatting not working?**
 - Install required formatters (stylua, black, etc.)
@@ -302,44 +332,49 @@ Run these commands to diagnose issues:
 │   │   ├── keymaps.lua     # Global keybindings
 │   │   └── options.lua     # Neovim settings
 │   └── plugins/
+│       ├── cmdline.lua     # Noice.nvim command line
+│       ├── codeium.lua     # Codeium AI setup
 │       ├── compiletion.lua # nvim-cmp configuration
-│       ├── copilot.lua     # GitHub Copilot setup
 │       ├── formatter.lua   # Conform.nvim formatting
 │       ├── lazy.lua        # Which-key configuration
+│       ├── mason.lua       # LSP server management
 │       ├── mini.lua        # Mini.nvim utilities
-│       ├── snacks.lua      # Snacks.nvim dashboard/explorer
+│       ├── snacks.lua      # Snacks.nvim components
 │       ├── telescope.lua   # Fuzzy finder
-│       ├── theme.lua       # Catppuccin theme
 │       ├── treesitter.lua  # Syntax highlighting
-│       ├── ui.lua          # Statusline and bufferline
-│       └── lsp/
-│           ├── init.lua    # LSP configuration
-│           └── mason.lua   # LSP server management
+│       └── ui.lua          # Theme, statusline, bufferline
+└── LICENSE                  # MIT License
 ```
 
 ---
 
-## 🔄 Versioning
+## 🔄 Versioning & Performance
 
-* **1.0.0** → First public release with core features
-* **1.0.x** → Bug fixes and minor improvements  
-* **1.x.0** → New features and plugin updates
-* **x.0.0** → Major overhauls and breaking changes
-
-**Current Version**: 1.0.0
+### Current Verion- v1.1.0
+- Keymap Overlaps Fixed → No more accidental binding conflicts
+- Mason LSP Error Resolved → Automatic LSP installation works flawlessly
+- Snacks Explorer → Mini.files → Leaner, faster, and more integrated file browsing
+- Lualine Polish → Cleaner design with better padding and section separators
+- Dashboard Cleanup → Simpler, faster-loading start screen
+- Copilot → Codeium → Free, privacy-friendly AI completions for everyone
+- Performance Boost → Startup time optimized down to ~40ms
 
 ---
 
 ## 📸 Screenshots
 
 ### **Dashboard**
-<img width="1600" height="900" alt="ShadowVim Dashboard" src="https://github.com/user-attachments/assets/438fcdbf-df7e-4a62-92ae-48d9b4b37946" />
+<img width="1600" height="900" alt="Screenshot 2025-08-13 151321" src="https://github.com/user-attachments/assets/2d070111-8f2f-4340-a2fe-6fe82dccaf06" />
+
 
 ### **Coding Experience**
-<img width="1600" height="900" alt="ShadowVim Coding" src="https://github.com/user-attachments/assets/115dab08-01d2-4db5-8c65-2f707a88f488" />
+<img width="1600" height="900" alt="Screenshot 2025-08-13 152927" src="https://github.com/user-attachments/assets/61bf5f97-142a-4d0a-9c3d-2c3b2e5617f9" />
 
-### **Plugin Management**
-<img width="1600" height="900" alt="ShadowVim Plugins" src="https://github.com/user-attachments/assets/3aee79f7-53c7-40b3-a01f-33bf9f91e5be" />
+
+### **File Explorer**
+<img width="1600" height="900" alt="Screenshot 2025-08-13 152937" src="https://github.com/user-attachments/assets/8284b43e-c289-4ef1-9e90-6c039f7caf38" />
+
+
 
 ---
 
