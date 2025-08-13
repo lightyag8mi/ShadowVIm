@@ -356,7 +356,7 @@ Run these commands to diagnose issues:
 - Snacks Explorer → Mini.files → Leaner, faster, and more integrated file browsing
 - Lualine Polish → Cleaner design with better padding and section separators
 - Dashboard Cleanup → Simpler, faster-loading start screen
-- Copilot → Codeium → Free, privacy-friendly AI completions for everyone
+- Replaced Copilot with Codeium → Free, privacy-friendly AI completions for everyone
 - Performance Boost → Startup time optimized down to ~40ms
 
 ---
@@ -406,3 +406,4 @@ If ShadowVim boosts your productivity:
 ---
 
 **Happy coding with ShadowVim!** 🚀
+
