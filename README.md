@@ -448,7 +448,7 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 ```
 
 ### **🎯 ShadowBox System Benefits**
-- **🔒 Update-Safe** → Your customizations survive ShadowVim updates
+- **🔒 Update-Safe** → Your customizations survive updates just copy paste your config in new update
 - **🧹 Clean Separation** → Core stays pristine, customs stay organized  
 - **🔄 Easy Rollback** → Rename shadowbox folder to return to defaults
 - **📈 Scalable** → Add complexity gradually as you learn
@@ -534,3 +534,4 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 ShadowVim stands on the shoulders of giants. Special thanks to:
 - **Folke** for Lazy.nvim, Snacks.nvim, and the modern Neovim ecosystem
 - **Echasnovski** for the incredible
+
