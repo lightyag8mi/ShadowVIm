@@ -10,7 +10,7 @@
 
 ShadowVim isn't just another Neovim distro — it's built for developers who want maximum productivity with cutting-edge 2025 features:
 
-- **Lightning Performance** → 30–40ms startup with intelligent lazy loading
+- **Lightning Performance** → startup with intelligent lazy loading
 - **Modular Architecture** → ShadowBox system for advanced customization
 - **AI-First Design** → Codeium AI pre-configured with smart completions
 - **Modern QoL Suite** → Powered by Snacks.nvim for dashboard, terminal, zen mode
@@ -36,7 +36,7 @@ Advanced modular system that allows deep customization:
 
 | Category | Feature | Description |
 |----------|---------|-------------|
-| **Performance** | 30-40ms startup | Optimized plugin loading with Lazy.nvim |
+| **Performance** | Blazing startup | Optimized plugin loading with Lazy.nvim |
 | | Smart lazy loading | Plugins load only when needed |
 | | Minimal footprint | Only essential plugins, no bloat |
 | **AI Integration** | Codeium AI | Free, privacy-friendly completions |
@@ -534,4 +534,5 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 ShadowVim stands on the shoulders of giants. Special thanks to:
 - **Folke** for Lazy.nvim, Snacks.nvim, and the modern Neovim ecosystem
 - **Echasnovski** for the incredible
+
 
