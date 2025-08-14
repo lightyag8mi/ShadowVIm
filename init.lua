@@ -18,8 +18,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- This tells Lazy to find every .lua file inside `lua/plugins/`
-require('lazy').setup('plugins')
--- It's good practice to load core options and keymaps after the plugin manager is set up.
-require('core.options')
-require('core.keymaps')
+local function load_user_config()
+  local status, err = pcall(require, "shadowbox.shadowlily")
+  if status then
+    vim.notify("ShadowVim: Loaded user configuration", vim.log.levels.INFO)
+    return true
+  else
+    vim.notify("ShadowVim: Using default configuration", vim.log.levels.WARN)
+    return false
+  end
+end
+
+if not load_user_config() then
+  -- Load defaults
+  require("core.options")
+  require("core.keymaps")
+  require("lazy").setup("plugins")
+end
