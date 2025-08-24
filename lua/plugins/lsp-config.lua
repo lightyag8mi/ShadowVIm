@@ -16,6 +16,10 @@ return {
       automatic_installation = true,
     })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ec83b5670ad796cc7d25deab487d92fd37a80bb8
     -- 🔹 Diagnostics configuration
     vim.diagnostic.config({
       virtual_text = {
@@ -38,3 +42,4 @@ return {
     vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics" })
   end,
 }
+
