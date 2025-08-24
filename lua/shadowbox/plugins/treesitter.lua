@@ -1,15 +1,24 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  -- ++ ADDED: These events ensure treesitter only loads when a file buffer
-  -- is actually created or read, not on the initial dashboard.
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
   config = function()
-    require('nvim-treesitter.configs').setup({
-      ensure_installed = { 'lua', 'vim', 'python', 'javascript', 'typescript', 'html', 'css', 'go' }, -- Added more common languages
+    local configs = require('nvim-treesitter.configs')
+    
+    configs.setup({
+      ensure_installed = { 'lua', 'vim', 'vimdoc' }, -- Minimal set
+      sync_install = false,
+      auto_install = false, -- Disable auto-install to prevent errors
+      
       highlight = {
         enable = true,
+        additional_vim_regex_highlighting = false,
       },
+      
+      -- Disable features that might cause issues
+      indent = { enable = false },
+      incremental_selection = { enable = false },
+      textobjects = { enable = false },
     })
   end,
 }

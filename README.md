@@ -21,14 +21,24 @@ ShadowVim isn't just another Neovim distro — it's built for developers who wan
 
 ---
 
-## 🚀 What's New in v1.2.0
+## 🚀 What's New in v1.2.1
 
-### **🏗️ ShadowBox Architecture**
-Advanced modular system that allows deep customization:
+### **🔧 Bug Fixes & Stability**
+- **Fixed Codeium keybindings** → Corrected `<C-;>` mapping that was causing function errors
+- **Resolved Snacks explorer conflicts** → Fixed buffer filtering issues with file explorer
+- **Improved LSP diagnostics display** → Better virtual text formatting and diagnostic symbols
+- **Fixed duplicate keymap definitions** → Cleaned up redundant keybinding configurations
+- **Enhanced Bufferline filtering** → Better handling of special buffers and terminals
 
-- **Plug-and-Play** → Drop custom configs in `lua/shadowbox/` to override defaults
-- **Clean Separation** → Core system stays intact while you customize freely
-- **Future-Proof** → Easy updates without losing your personal touches
+### **⚡ Performance Improvements** 
+- **Optimized plugin lazy loading** → More efficient event-based loading for better startup times
+- **Refined Treesitter config** → Disabled problematic features that could cause parsing errors
+- **Streamlined Mini.nvim setup** → Better integration and reduced conflicts between Mini modules
+
+### **🎨 UI/UX Enhancements**
+- **Improved dashboard aesthetics** → Better ASCII art rendering and layout
+- **Enhanced statusline information** → More informative LSP status and file information
+- **Better notification handling** → Cleaner notification display with Mini.notify integration
 
 ---
 
@@ -55,7 +65,7 @@ Advanced modular system that allows deep customization:
 | | Treesitter Highlighting | Superior syntax highlighting |
 | | Conform Formatting | Auto-format on save |
 | | nvim-cmp Completion | Intelligent auto-completion |
-| **File Management** | Mini.files Explorer | Fast, integrated file browser |
+| **File Management** | Snacks Explorer | Fast, integrated file browser |
 | | Telescope Finder | Fuzzy finding for everything |
 | | Smart Navigation | Quick buffer/file switching |
 | **Code Intelligence** | LSP Integration | Full language server support |
@@ -133,11 +143,11 @@ ShadowVim uses `<Space>` as the leader key with intuitive, muscle-memory-friendl
 | `<Space>d` | Dashboard | Beautiful startup screen with quick actions |
 | `<Space>z` | Zen Mode | Distraction-free coding environment |
 | `<Space>t` | Terminal | Smart floating terminal |
+| `<Space>e` | File Explorer | Snacks integrated file browser |
 
 ### **📁 File & Navigation**
 | Key | Action | Description |
 |-----|--------|-------------|
-| `<Space>e` | File Explorer | Mini.files integrated browser |
 | `<Space>ff` | Find Files | Telescope fuzzy file finder |
 | `<Space>fg` | Live Grep | Search across entire project |
 | `<Space>fb` | Find Buffers | Quick buffer switching |
@@ -162,7 +172,6 @@ ShadowVim uses `<Space>` as the leader key with intuitive, muscle-memory-friendl
 | Key | Action | Description |
 |-----|--------|-------------|
 | `<Ctrl>a` | Accept AI | Accept Codeium suggestion |
-| `<Ctrl>;` | Next Suggestion | Cycle to next AI suggestion |
 | `<Ctrl>,` | Previous Suggestion | Cycle to previous suggestion |
 | `<Ctrl>x` | Clear AI | Dismiss current suggestion |
 
@@ -193,8 +202,6 @@ ShadowVim uses `<Space>` as the leader key with intuitive, muscle-memory-friendl
 |-----|--------|-------------|
 | `<Ctrl>b` | Beginning of Line | Jump to line start |
 | `<Ctrl>e` | End of Line | Jump to line end |
-| `<Ctrl>l/r` | Move Left/Right | Character navigation |
-| `<Ctrl>u/d` | Move Up/Down | Line navigation |
 
 *💡 **Pro Tip**: Press `<Space>` and wait to see all available keybindings with which-key!*
 
@@ -212,7 +219,7 @@ ShadowVim includes intelligent language support out of the box:
 | **TypeScript/JS** | tsserver | IntelliSense, debugging, formatting |
 
 ### **Syntax Highlighting (Treesitter)**
-Advanced syntax highlighting for: `lua`, `vim`, `python`, `javascript`, `typescript`, `html`, `css`, `go`, `json`, `yaml`, `markdown`
+Advanced syntax highlighting for: `lua`, `vim`, `vimdoc` with minimal configuration to prevent parsing errors
 
 ### **Auto-formatting (Conform.nvim)**
 Format-on-save configured for:
@@ -279,12 +286,65 @@ ShadowVim features the innovative ShadowBox system for clean customization:
 
 ### **Getting Started with ShadowBox**
 
-#### **1. Write your own keymaps or options**
-- **Customize Shadowbox/options.lua and Shadowbox/keymps.lua**
-#### **🔧 Adding Custom Plugins**
-- **Override Existing Plugin** or **Add newplugins.lua inside shadowbox/plugins**
+#### **1. Create Your Custom Configuration**
+Create `lua/shadowbox/shadowlily.lua`:
+```lua
+-- shadowlily.lua
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
+-- Load your custom configurations
+require("shadowbox.core.options")
+require("shadowbox.core.keymaps")
 
+-- Load plugins
+require("lazy").setup("shadowbox.plugins")
+```
+
+#### **2. Override Core Settings**
+Create `lua/shadowbox/core/options.lua`:
+```lua
+local opt = vim.opt
+
+-- Your custom vim options
+opt.tabstop = 4          -- Different tab size
+opt.shiftwidth = 4       -- Different shift width
+opt.wrap = true          -- Enable line wrapping
+-- Add any vim options you prefer
+```
+
+#### **3. Custom Keybindings**
+Create `lua/shadowbox/core/keymaps.lua`:
+```lua
+local keymap = vim.keymap
+
+-- Your custom keybindings
+keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
+keymap.set('n', '<leader>x', ':x<CR>', { desc = 'Save and quit' })
+-- Add any custom keymaps
+```
+
+#### **4. Add or Override Plugins**
+Create `lua/shadowbox/plugins/my-plugins.lua`:
+```lua
+return {
+  -- Add new plugins
+  {
+    "your-username/your-plugin",
+    config = function()
+      -- Plugin configuration
+    end
+  },
+  
+  -- Override existing plugins
+  {
+    "catppuccin/nvim",
+    opts = {
+      flavour = "frappe" -- Change theme variant
+    }
+  }
+}
+```
 
 ---
 
@@ -296,6 +356,7 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 - **[snacks.dashboard](https://github.com/folke/snacks.nvim)** → Beautiful startup experience
 - **[snacks.terminal](https://github.com/folke/snacks.nvim)** → Integrated floating terminal
 - **[snacks.zen](https://github.com/folke/snacks.nvim)** → Distraction-free coding mode
+- **[snacks.explorer](https://github.com/folke/snacks.nvim)** → Fast file browser
 - **[snacks.statuscolumn](https://github.com/folke/snacks.nvim)** → Enhanced gutter with git signs
 - **[snacks.scroll](https://github.com/folke/snacks.nvim)** → Smooth scroll animations
 - **[snacks.words](https://github.com/folke/snacks.nvim)** → Smart word highlighting
@@ -303,7 +364,6 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 ### **🏗️ Core Framework**
 - **[Lazy.nvim](https://github.com/folke/lazy.nvim)** → Modern plugin manager with lazy loading
 - **[Mini.nvim](https://github.com/echasnovski/mini.nvim)** → Comprehensive utility suite
-  - Mini.files → Fast file explorer
   - Mini.pairs → Smart bracket completion  
   - Mini.comment → Intelligent commenting
   - Mini.surround → Text object manipulation
@@ -330,7 +390,7 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 ### **📦 Enhanced Experience**
 - **[Noice.nvim](https://github.com/folke/noice.nvim)** → Command line improvements
 
-*Only **~24 carefully curated plugins** — no bloat, maximum efficiency*
+*Only **~22 carefully curated plugins** — no bloat, maximum efficiency*
 
 ---
 
@@ -347,14 +407,13 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 - Check internet connection for AI features
 - Restart Neovim after authentication
 
-**Mini.files Explorer Navigation**
-- `<Space>e` or `-` to open file explorer
+**Snacks Explorer Navigation**
+- `<Space>e` to open file explorer
 - `h/j/k/l` or arrow keys to navigate  
 - `Enter` to open files/folders
 - `l` or `→` to expand directories
 - `h` or `←` to collapse/go up
 - `g.` to toggle hidden files
-- `=` to save changes (create/delete/rename files)
 - `q` to close explorer
 
 **LSP Server Issues**
@@ -434,7 +493,7 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 │   │   ├── codeium.lua         #    AI completion
 │   │   ├── mini.lua            #    Mini.nvim utilities
 │   │   ├── treesitter.lua      #    Syntax highlighting
-│   │   ├── compiletion.lua     #    nvim-cmp setup
+│   │   ├── completion.lua      #    nvim-cmp setup
 │   │   ├── formatter.lua       #    Code formatting
 │   │   ├── lazy.lua            #    Which-key
 │   │   └── cmdline.lua         #    Command line enhancements
@@ -462,14 +521,19 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 - **v1.1.0** → Performance optimizations, Codeium AI, Mini.files integration
 - **v1.0.0** → Initial release with beautiful defaults
 
-### **🚀 Current Version: v1.2.0**
-
+### **🚀 Major Update: v1.2.0**
 - **🛡️ ShadowBox System** → Risk-free experimentation with any configuration
 - **🔧 User Configuration Override** → Complete control with automatic safety net
 - **📚 Try Any Distro Safely** → LazyVim, AstroNvim, custom builds - all with fallback protection
 - **⚡ Enhanced Notifications** → Clear feedback on which configuration is active
 - **🎯 Zero-Risk Learning** → Experiment and learn without fear of breaking anything
 
+### **🔧 Current Version: v1.2.1 - Bug Fixes & Stability**
+- **Fixed Codeium AI keybindings** → Resolved function mapping errors
+- **Enhanced file explorer integration** → Better Snacks explorer functionality
+- **Improved LSP diagnostics** → Cleaner virtual text and symbols
+- **Optimized plugin loading** → Better lazy loading and startup performance
+- **Refined UI components** → Better buffer handling and statusline information
 
 ---
 
@@ -483,9 +547,6 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 <img width="1600" height="900" alt="ShadowVim Coding" src="https://github.com/user-attachments/assets/61bf5f97-142a-4d0a-9c3d-2c3b2e5617f9" />
 *Full LSP integration with AI completions and rich diagnostics*
 
-### **📁 File Management**
-<img width="1600" height="900" alt="ShadowVim Explorer" src="https://github.com/user-attachments/assets/8284b43e-c289-4ef1-9e90-6c039f7caf38" />
-*Mini.files integration for seamless file operations*
 
 ---
 
@@ -533,6 +594,12 @@ ShadowVim leverages the latest 2025 Neovim ecosystem for optimal performance:
 ### **🏆 Recognition**
 ShadowVim stands on the shoulders of giants. Special thanks to:
 - **Folke** for Lazy.nvim, Snacks.nvim, and the modern Neovim ecosystem
-- **Echasnovski** for the incredible
+- **Echasnovski** for the incredible Mini.nvim suite
+- **Catppuccin Team** for the beautiful, accessible theme
+- **The entire Neovim community** for pushing the boundaries of what's possible
 
+---
 
+## 📄 License
+
+MIT License - feel free to use, modify, and distribute as you see fit.

@@ -12,14 +12,8 @@ return {
     local mason_lspconfig = require("mason-lspconfig")
 
     mason_lspconfig.setup({
-      ensure_installed = { "lua_ls", "pyright", "tsserver" },
+      ensure_installed = { "lua_ls", "pyright" },
       automatic_installation = true,
-    })
-
-    mason_lspconfig.setup_handlers({
-      function(server_name)
-        lspconfig[server_name].setup({})
-      end,
     })
 
     -- 🔹 Diagnostics configuration

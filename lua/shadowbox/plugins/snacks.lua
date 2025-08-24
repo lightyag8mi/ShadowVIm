@@ -3,10 +3,12 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
+    -- Dashboard configuration
     dashboard = {
-        preset = {
-          header = {
-            [[
+      enabled = true,
+      preset = {
+        header = {
+          [[
 ███████╗██╗  ██╗ █████╗ ██████╗  ██████╗ ██╗    ██╗██╗   ██╗██╗███╗   ███╗
 ██╔════╝██║  ██║██╔══██╗██╔══██╗██╔═══██╗██║    ██║██║   ██║██║████╗ ████║
 ███████╗███████║███████║██║  ██║██║   ██║██║ █╗ ██║██║   ██║██║██╔████╔██║
@@ -26,27 +28,23 @@ return {
             { desc = "󰕕  Quit",           key = "qq", action = ":qa" },
             { desc = "─────────────────────────────────────────────────────────────────────────", hl = "SnacksFooter", no_gap = true, rep = true },
           },
-        },
-        sections = {
-          { section = "header" },
-          { section = "keys", gap = 1 },
-          { section = "startup" },
-        },
-        formats = {
-          startup = function()
-            local stats = require("lazy").stats()
-            return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. math.floor(stats.startuptime) .. "ms"
-          end,
-        },
       },
+      sections = {
+        { section = "header" },
+        { section = "keys", gap = 1 },
+        { section = "startup" },
+      },
+    },
+    
+    -- Basic features
     zen = { enabled = true },
     terminal = { enabled = true },
     bigfile = { enabled = true },
-    explorer = { enabled = false },
+    explorer = { enabled = true }, -- Enable explorer
     indent = { enabled = true },
     input = { enabled = true },
     picker = { enabled = true },
-    notifier = { enabled = false },
+    notifier = { enabled = true }, -- Enable notifier
     quickfile = { enabled = true },
     scope = { enabled = true },
     git = { enabled = true },
@@ -54,5 +52,16 @@ return {
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    
+    -- Fix potential nvim_exec2 issues
+    win = { enabled = true },
+  },
+  
+  -- Add keymaps for Snacks
+  keys = {
+    { "<leader>e", function() require("snacks").explorer() end, desc = "Explorer" },
+    { "<leader>z", function() require("snacks").zen() end, desc = "Zen Mode" },
+    { "<leader>t", function() require("snacks").terminal() end, desc = "Terminal" },
+    { "<leader>d", function() require("snacks").dashboard() end, desc = "Dashboard" },
   },
 }
